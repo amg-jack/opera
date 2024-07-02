@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            height: calc(100vh - 85px); /* Full viewport height */
+        }
+        .grid-item {
+            position: relative;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            padding: 1px;
+            transition: transform 0.7s ease, filter 0.3s ease;
+        }
+        .grid-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(70%);
+        }
+        .centered-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24pt;
+        }
+        .grid-item:hover .centered-text {
+            opacity: 1;
+        }
+        a, a:hover {
+            color: white !important;
+            font-weight: normal !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid banner">
+        <a href="002MainMenu.html" class="text-white fs-3">
+            <img src="assets/img/AMG.png" alt="" width="100px" height="auto">
+        </a>
+        <div class="ms-auto">Asset Management Group</div>
+    </div>
+
+    <div class="container-fluid p-0">
+        <div class="grid-container">
+            <a href="014JobStatusSummaryOut.html" class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">My Jobs</div>
+            </a>
+            <a href="Today_Possessions.html" class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">Today's Possessions</div>
+            </a>
+            <a href="Today_Jobs.html" class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">Today's Jobs</div>
+            </a>
+            <a href="055ImportJobSearch.html" class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">New Instructions</div>
+            </a>
+            <a href="Unallocated.html" class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">Unallocated Jobs</div>
+            </a>
+            <a href="014PropertySearchOut.html" class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">Property Search</div>
+            </a>
+            <a href="Returned_Jobs.html" class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">Returned Jobs</div>
+            </a>
+            <a href="Awaiting_Acceptance.html" class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">Awaiting Acceptance</div>
+            </a>
+            <div class="grid-item">
+                <img src="https://placehold.co/200x200/gray/gray" alt="">
+                <div class="centered-text">More Options</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
