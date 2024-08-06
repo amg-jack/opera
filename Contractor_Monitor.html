@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contractor Monitor</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="container-fluid banner">
+        <a href="002MainMenu.html" class="text-white fs-3">
+            <img src="assets/img/AMG.png" alt="" width="100px" height="auto">
+        </a>
+        <div class="ms-auto">Asset Management Group</div>
+    </div>
+
+    <div class="container col-xxl-7 mt-5">
+
+        <div class="card shadow">
+            <div class="card-header text-center">
+                Contractor Monitor
+            </div>
+            <div class="card-body">
+                
+                <div class="row  fs-9">
+
+                    <div class="col-lg-4 mb-3">
+                        <label for="" class="form-label">Select Status</label>
+                        <select name="vField" id="vField" class="form-select form-select-sm">
+                            <option value="0">New Instructions</option>
+                            <option value="1">Returned Jobs</option>
+                            <option value="2">Unallocated</option>
+                            <option value="3">Awaiting Acceptance</option>
+                            <option value="4">Live</option>
+                            <option value="5">Future</option>
+                            <option value="6">Today</option>
+                            <option value="35">Repossession</option>
+                            <option value="7">Shuttering</option>
+                            <option value="8">Quotes</option>
+                            <option value="36">Recall</option>
+                            <option value="37">Auth Quote</option>
+                            <option value="38">Britannic Initial Visit</option>
+                            <option value="39">Chattel Clear</option>
+                            <option value="40">Drain Down</option>
+                            <option value="41">Garden Maintenance</option>
+                            <option value="42">House Sitting</option>
+                            <option value="43">Initial Clean</option>
+                            <option value="49">Yard Maintenance</option>
+                            <option value="44">Misc</option>
+                            <option value="45">NPI Initial Visit</option>
+                            <option value="46">Property Inspection</option>
+                            <option value="48">NRAM PI</option>
+                            <option value="47">Emergency</option>
+                            <option value="9" selected>All</option>
+                            <option>--------------------------------------</option>
+                            <option value="10">Offer</option>
+                            <option value="11">Allocated</option>
+                            <option value="12">In Possession</option>
+                            <option value="13">Works Complete</option>
+                            <option value="14">Audits Complete ALL</option>
+                            <option value="15">Audits Complete</option>
+                            <option value="16">Audits Complete FOC</option>
+                            <option value="17">Financials Complete</option>
+                            <option value="18">Cancelled All</option>
+                            <option value="19">Cancelled</option>
+                            <option value="20">Cancelled Without Charge</option>
+                            <option value="21">On Hold</option>
+                            <option value="22">Delivered (Cancelled Job)</option>
+                            <option value="23">Delivered</option>
+                            <option value="24">Delivered ALL</option>
+                            <option value="25">Quote Requested</option>
+                            <option value="26">Quote Received</option>
+                            <option value="27">Quote With Client</option>
+                            <option value="28">Quote Authorised</option>
+                            <option value="29">No Further Works Reqd</option>
+                            <option value="30">Shuttering Initial</option>
+                            <option value="31">Shuttering Weekly</option>
+                            <option value="32">Shuttering Removal</option>
+                            <option value="33">Shuttering Removed</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-4 mb-3">
+                        <label for="" class="form-label">Contractor</label>
+                        <select class="form-select form-select-sm" name="vContractor">
+                                <option value="-1">All Contractors</option>
+                                
+                                <option value="9003906"></option>
+                                
+                                <option value="9004813"></option>
+                                
+                                <option value="9005991"></option>
+                                
+                                <option value="9007256"></option>
+                                
+                                <option value="9000629">3 Sixty Ireland</option>
+                                
+                                <option value="9005109">A &amp; L Demain</option>
+                                
+                                <option value="9009422">A A Property Maintenance</option>
+                                
+                                <option value="9000062">A C Property Maintenance Ltd</option>
+                                
+                                <option value="9009692">A Plus Developments</option>
+                                
+                                <option value="9013240">A S Whiteley Property Services Ltd</option>
+                                
+                                <option value="9006426">A1 Locks &amp; Leaks</option>
+                                
+                                <option value="9017464">AJs Property Maintenance</option>
+                                
+                                <option value="9015181">All Star Contractors Ltd</option>
+                                
+                                <option value="9001028">Almasters Lock &amp; Safe Co.</option>
+                                
+                                <option value="9015289">AMR Property Solutions (Northants) LLP</option>
+                                
+                                <option value="9017340">Andrew Porter Ltd</option>
+                                
+                                <option value="9008287">Andy Archer Property Services</option>
+                                
+                                <option value="9017626">Apex Facilities Management</option>
+                                
+                                <option value="9013887">APL Aberdeen Ltd</option>
+                                
+                                <option value="9017221">Archer Locksmith &amp; Security Ltd</option>
+                                
+                                <option value="9012689">Bartlett Tree Experts (Bedfordshire)</option>
+                                
+                                <option value="9010435">Bartlett Tree Experts (Bristol)</option>
+                                
+                                <option value="9017161">Bartlett Tree Experts (Cardiff)</option>
+                                
+                                <option value="9013106">Bartlett Tree Experts (Chelmsford)</option>
+                                
+                                <option value="9010587">Bartlett Tree Experts (Cirencester)</option>
+                                
+                                <option value="9014016">Bartlett Tree Experts (East Grinstead)</option>
+                                
+                                <option value="9013400">Bartlett Tree Experts (Guildford)</option>
+                                
+                                <option value="9014146">Bartlett Tree Experts (London &amp; Beaconsfield)</option>
+                                
+                                <option value="9016911">Bartlett Tree Experts (London)</option>
+                                
+                                <option value="9010764">Bartlett Tree Experts (Manchester)</option>
+                                
+                                <option value="9010599">Bartlett Tree Experts (Sevenoaks)</option>
+                                
+                                <option value="9010012">Bartlett Tree Experts (York)</option>
+                                
+                                <option value="9016867">BCA Property Services</option>
+                                
+                                <option value="9017226">Belvedere Property Maintenance Ltd</option>
+                                
+                                <option value="9016798">Bolton Lock &amp; Clean</option>
+                                
+                                <option value="9000072">C C Services Northern Ltd</option>
+                                
+                                <option value="9017862">C&amp;S Home Services NI Ltd</option>
+                                
+                                <option value="9000075">Campbelltowns</option>
+                                
+                                <option value="9017485">Cheshire Removals </option>
+                                
+                                <option value="9007715">Clearway Environmental Services (UK) Ltd</option>
+                                
+                                <option value="9000079">D J H Property Services Ltd</option>
+                                
+                                <option value="9000080">D T Property Services</option>
+                                
+                                <option value="9017209">DSM Locksmiths Ltd</option>
+                                
+                                <option value="9016246">Dyno Rod Greater Manchester</option>
+                                
+                                <option value="9016095">Frankie Smith</option>
+                                
+                                <option value="9014038">Gas-Elec</option>
+                                
+                                <option value="9013830">GHT Specialist Solutions Ltd</option>
+                                
+                                <option value="9005033">Green Property Maintenance</option>
+                                
+                                <option value="9017573">Harwich Town Locksmiths Ltd</option>
+                                
+                                <option value="9012370">Hillside Home Improvements</option>
+                                
+                                <option value="9015149">Homeworld</option>
+                                
+                                <option value="9002895">K9 Search Solutions Ltd</option>
+                                
+                                <option value="9017942">KLD Property Services</option>
+                                
+                                <option value="9000077">Lock Safe Property Care Ltd</option>
+                                
+                                <option value="9009598">Lock Stock &amp; Maintenance Ltd</option>
+                                
+                                <option value="9000112">Locked Out Property Maintenance Ltd</option>
+                                
+                                <option value="9017918">Logan Removals</option>
+                                
+                                <option value="9000070">M &amp; S Property Services (NW) Ltd</option>
+                                
+                                <option value="9000115">M H C Property Services</option>
+                                
+                                <option value="9012281">M&amp;B Properties</option>
+                                
+                                <option value="9012230">Manfield Property Solutions Ltd</option>
+                                
+                                <option value="9009227">Marden Maintenance</option>
+                                
+                                <option value="9015208">Mark Howarth-Test</option>
+                                
+                                <option value="9013206">MER Property Services</option>
+                                
+                                <option value="9012393">Midland Property Services</option>
+                                
+                                <option value="9017565">Moat Building Services</option>
+                                
+                                <option value="9016874">MR Finnie Property Services</option>
+                                
+                                <option value="9013399">MS Contracts</option>
+                                
+                                <option value="9000069">Mulberry Building &amp; Security Services Ltd</option>
+                                
+                                <option value="9017921">My Key Locksmiths Worksop</option>
+                                
+                                <option value="9016794">Nationwide Dog Handlers Ltd</option>
+                                
+                                <option value="9012215">North East Cleaning &amp; Maintenance Ltd</option>
+                                
+                                <option value="9012703">Number One Property Services Ltd</option>
+                                
+                                <option value="9013268">Orbis Protect Ltd</option>
+                                
+                                <option value="9017190">Paul Kendrick</option>
+                                
+                                <option value="9017342">Pickfords</option>
+                                
+                                <option value="9017377">Policy Property Services Ltd</option>
+                                
+                                <option value="9016823">Powercleans Cleaning Contractors Ltd</option>
+                                
+                                <option value="9017811">Powercleans Group Ltd</option>
+                                
+                                <option value="9014045">Property Services Isle of Wight Ltd</option>
+                                
+                                <option value="9000074">R &amp; W Services</option>
+                                
+                                <option value="9014851">RC Property Services</option>
+                                
+                                <option value="9009909">Retailcane</option>
+                                
+                                <option value="9016376">Rollwright</option>
+                                
+                                <option value="9000122">S F M Maintenance</option>
+                                
+                                <option value="9009600">S J M Property Services</option>
+                                
+                                <option value="9010694">S K P M</option>
+                                
+                                <option value="9009578">S O S Homeservices</option>
+                                
+                                <option value="9009470">Specialist Xpress Ltd</option>
+                                
+                                <option value="9011812">SPS Doorguard Ltd (Glasgow)</option>
+                                
+                                <option value="9012438">SPS Doorguard Ltd (Ilford)</option>
+                                
+                                <option value="9016802">SRB</option>
+                                
+                                <option value="9017486">Stockport Removals &amp; Storage</option>
+                                
+                                <option value="9013742">T&amp;S Services</option>
+                                
+                                <option value="9007685">Test Contractor</option>
+                                
+                                <option value="203470">Town &amp; Country (Wales) Ltd</option>
+                                
+                                <option value="9006074">V P Sitex</option>
+                                
+                                <option value="9009589">Vibrant Energy Matters Limited</option>
+                                
+                                <option value="9014857">Vision Property Services</option>
+                                
+                                <option value="9017920">Wakefield Lock &amp; Key</option>
+                                
+                                <option value="9000123">Wayne Smith</option>
+                                
+                        </select>
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Job Date Between</label>
+                            <div class="d-flex justify-content-between">
+                            <input type="date" name="" id="" class="form-control form-control-sm me-2">
+                               <span class="m-auto">-</span>
+                            <input type="date" name="" id="" class="form-control form-control-sm ms-2">
+                        </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="d-flex justify-content-between">
+                        <a href="" class="btn btn-sm btn-primary col-2">Back</a>
+                        <button type="submit" class="btn btn-sm btn-primary col-2">
+                            Search
+                        </button>
+                    </div>
+                </div>
+           
+
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

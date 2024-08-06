@@ -1,18 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main Menu</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
+   
     <style>
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(12, 1fr); /* 12 equal columns */
             height: calc(100vh - 85px); /* Full viewport height */
         }
         .grid-item {
@@ -46,6 +45,20 @@
             color: white !important;
             font-weight: normal !important;
         }
+
+        /* First row */
+        .row-1-col-1 { grid-column: span 6; }
+        .row-1-col-2 { grid-column: span 6; }
+        
+        /* Second row */
+        .row-2-col-1 { grid-column: span 4; }
+        .row-2-col-2 { grid-column: span 4; }
+        .row-2-col-3 { grid-column: span 4; }
+
+        /* Third row */
+        .row-3-col-1 { grid-column: span 4; }
+        .row-3-col-2 { grid-column: span 4; }
+        .row-3-col-3 { grid-column: span 4; }
     </style>
 </head>
 
@@ -60,46 +73,48 @@
 
     <div class="container-fluid p-0">
         <div class="grid-container">
-            <a href="014JobStatusSummaryOut.html" class="grid-item">
+            <!-- First Row -->
+            <a href="Contractor_Monitor.html" class="grid-item row-1-col-1">
                 <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">My Jobs</div>
+                <div class="centered-text">Contractor Monitor</div>
             </a>
-            <a href="Today_Possessions.html" class="grid-item">
+            <a href="Contractor_Management.html" class="grid-item row-1-col-2">
                 <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">Today's Possessions</div>
+                <div class="centered-text">Contractor Management</div>
             </a>
-            <a href="Today_Jobs.html" class="grid-item">
+            
+            <!-- Second Row -->
+            <a href="Cancellation_Report.html" class="grid-item row-2-col-1">
                 <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">Today's Jobs</div>
+                <div class="centered-text">Cancellation Report</div>
             </a>
-            <a href="055ImportJobSearch.html" class="grid-item">
+            <a href="035ReportsMenu.html" class="grid-item row-2-col-2">
                 <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">New Instructions</div>
+                <div class="centered-text">Management Reports</div>
             </a>
-            <a href="Unallocated.html" class="grid-item">
+            <a href="029ShutteringInvoiceSummary.html" class="grid-item row-2-col-3">
                 <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">Unallocated Jobs</div>
+                <div class="centered-text">Shuttering Monitor</div>
             </a>
-            <a href="014PropertySearchOut.html" class="grid-item">
+            
+            <!-- Third Row -->
+            <a href="005CompanyMenu.html" class="grid-item row-3-col-1">
                 <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">Property Search</div>
+                <div class="centered-text">Company Database</div>
             </a>
-            <a href="Returned_Jobs.html" class="grid-item">
+            <a href="003UserMenu.html" class="grid-item row-3-col-2">
                 <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">Returned Jobs</div>
+                <div class="centered-text">User Database</div>
             </a>
-            <a href="Awaiting_Acceptance.html" class="grid-item">
+            <a href="007DBMenu.html" class="grid-item row-3-col-3">
                 <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">Awaiting Acceptance</div>
-            </a>
-            <a href="menu2.html" class="grid-item">
-                <img src="https://placehold.co/200x200/gray/gray" alt="">
-                <div class="centered-text">More Options</div>
+                <div class="centered-text">Database Setup</div>
             </a>
         </div>
     </div>
 
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
 
+<!-- Bootstrap JS bundle (optional if you need JS features) -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
