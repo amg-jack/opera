@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            padding: 20px;
+        }
+        .chart-container {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid banner">
+        <a href="002MainMenu.html" class="text-white fs-3">
+            <img src="assets/img/AMG.png" alt="" width="100px" height="auto">
+        </a>
+        <div class="ms-auto">Asset Management Group</div>
+    </div>
+
+    <div class="container-fluid p-3">
+
+        <div class="row mb-2 d-flex justify-content-center">
+                    
+            <div class="col-lg-6">
+
+                <div class="input-group">
+                    <span class="input-group-text" id="input-group-left-example">Select Contractor:</span>
+                    <select name="" id="" class="form-select form-select-sm">
+                        <option value=""></option>
+                    </select>
+                </div>
+                
+            </div>
+
+        </div>
+        
+
+        <div class="dashboard-container">
+
+            <div class="card shadow">
+                <div class="card-header text-center">
+                   [title]
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-header text-center">
+                   [title]
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="chart2"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-header text-center">
+                   [title]
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="chart3"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-header text-center">
+                   [title]
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="chart4"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart 1: Line Chart
+            var ctx1 = document.getElementById('chart1').getContext('2d');
+            var chart1 = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Sales',
+                        data: [10, 20, 15, 30, 25, 40, 35, 40],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Chart 2: Bar Chart
+            var ctx2 = document.getElementById('chart2').getContext('2d');
+            var chart2 = new Chart(ctx2, {  
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Votes',
+                        data: [12, 19, 10, 13, 9, 20, 25, 20],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Chart 3: Pie Chart
+            var ctx3 = document.getElementById('chart3').getContext('2d');
+            var chart3 = new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: '2023',
+                            data: [12, 19, 3, 5, 2, 3],
+                            borderWidth: 1
+                        },
+                        {
+                            label: '2024',
+                            data: [15,20,5,10,20],
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Chart 4: Doughnut Chart
+            var ctx4 = document.getElementById('chart4').getContext('2d');
+            var chart4 = new Chart(ctx4, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Votes',
+                        data: [12, 19, 10, 13, 9, 10],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+    </script>
+</body>
+</html>
