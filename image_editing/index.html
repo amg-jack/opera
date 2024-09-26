@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Cropper</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
+    <style>
+        #imageContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-wrapper {
+            position: relative;
+            margin-bottom: 50px;
+            width: 500px;
+            height: 300px;
+            margin-right: 20px;
+        }
+
+        .rotate-button,
+        .download-button,
+        .zoom-button {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid banner">
+        <a href="../002MainMenu.html" class="text-white fs-3">
+            <img src="../assets/img/AMG.png" alt="" width="100px" height="auto">
+        </a>
+        <div class="ms-auto">Asset Management Group</div>
+    </div>
+
+    <div class="container-fluid mt-5">
+
+        <div class="mb-3">
+            <input type="file" id="fileInput" multiple />
+            <button id="uploadButton" class="btn btn-primary">Upload and Rotate</button>
+            <button id="uploadAllButton" class="btn btn-success">Upload All</button>
+        </div>
+
+        <div id="imageContainer"></div>
+
+    </div>
+
+    <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
+
+<script>
+    
+    document.getElementById('uploadButton').addEventListener('click', function () {
+            const uploadButton = this;
+            uploadButton.disabled = true;
+
+            const compressionLevelDownload = 0.8;
+
+            const files = document.getElementById('fileInput').files;
+            const imageContainer = document.getElementById('imageContainer');
+            imageContainer.innerHTML = '';
+
+            const cropperInstances = new Map();
+            const uploadedImages = new Set();
+            const maxWidthHeight = 1000;  // Maximum width or height
+
+            Array.from(files).forEach((file, index) => {
+                const uniqueIdentifier = `${file.name}-${file.size}`;
+
+                if (uploadedImages.has(uniqueIdentifier)) {
+                    console.log(`Skipping duplicate image: ${file.name}`);
+                    return;
+                }
+
+                uploadedImages.add(uniqueIdentifier);
+
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.className = 'cropper-image';
+                    img.id = `image-${index}`;
+                    //img.loading = 'lazy';
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'image-wrapper';
+                    wrapper.appendChild(img);
+                    imageContainer.appendChild(wrapper);
+
+                    const cropper = new Cropper(img, {
+                        viewMode: 1,
+                        rotatable: true,
+                        autoCrop: true,
+                        autoCropArea: 1,
+                        zoomable: true,
+                        zoomOnWheel: false,
+                    });
+
+                    cropperInstances.set(img.id, cropper);
+
+                    const zoomInButton = document.createElement('button');
+                    zoomInButton.textContent = 'Zoom In';
+                    zoomInButton.className = 'zoom-button btn btn-primary';
+                    zoomInButton.addEventListener('click', function () {
+                        const cropper = cropperInstances.get(img.id);
+                        if (cropper) {
+                            cropper.zoom(0.1); // Increase zoom level by 0.1
+                        }
+                    });
+                    wrapper.appendChild(zoomInButton);
+
+                    const zoomOutButton = document.createElement('button');
+                    zoomOutButton.textContent = 'Zoom Out';
+                    zoomOutButton.className = 'zoom-button btn btn-primary';
+                    zoomOutButton.addEventListener('click', function () {
+                        const cropper = cropperInstances.get(img.id);
+                        if (cropper) {
+                            cropper.zoom(-0.1); // Decrease zoom level by 0.1
+                        }
+                    });
+                    wrapper.appendChild(zoomOutButton);
+
+                    const rotateLeftButton = document.createElement('button');
+                    rotateLeftButton.textContent = 'Rotate Left';
+                    rotateLeftButton.className = 'rotate-button btn btn-secondary';
+                    rotateLeftButton.addEventListener('click', function () {
+                        const cropper = cropperInstances.get(img.id);
+                        if (cropper) {
+                            cropper.rotate(-90);
+                        }
+                    });
+                    wrapper.appendChild(rotateLeftButton);
+
+                    const rotateRightButton = document.createElement('button');
+                    rotateRightButton.textContent = 'Rotate Right';
+                    rotateRightButton.className = 'rotate-button btn btn-secondary';
+                    rotateRightButton.addEventListener('click', function () {
+                        const cropper = cropperInstances.get(img.id);
+                        if (cropper) {
+                            cropper.rotate(90);
+                        }
+                    });
+                    wrapper.appendChild(rotateRightButton);
+
+                  /*  const reset = document.createElement('button');
+                    reset.textContent = 'Reset';
+                    reset.className = 'btn btn-secondary';
+                    reset.addEventListener('click', function () {
+                        const cropper = cropperInstances.get(img.id);
+                        if (cropper) {
+                            cropper.reset();
+                        }
+                    });
+                    wrapper.appendChild(reset);
+                    */
+                    const downloadButton = document.createElement('button');
+                    downloadButton.textContent = 'Download';
+                    downloadButton.className = 'download-button btn btn-danger';
+                    downloadButton.addEventListener('click', function () {
+                        const cropper = cropperInstances.get(img.id);
+                        if (cropper) {
+                            const originalWidth = img.naturalWidth;
+                            const originalHeight = img.naturalHeight;
+
+                            let newWidth = originalWidth;
+                            let newHeight = originalHeight;
+
+                            if (originalWidth > maxWidthHeight || originalHeight > maxWidthHeight) {
+                                const aspectRatio = originalWidth / originalHeight;
+
+                                if (aspectRatio > 1) {
+                                    newWidth = maxWidthHeight;
+                                    newHeight = Math.floor(maxWidthHeight / aspectRatio);
+                                } else {
+                                    newHeight = maxWidthHeight;
+                                    newWidth = Math.floor(maxWidthHeight * aspectRatio);
+                                }
+                            }
+
+                            const canvas = cropper.getCroppedCanvas({
+                                width: newWidth,
+                                height: newHeight,
+                                imageSmoothingEnabled: false,
+                                imageSmoothingQuality: 'high'
+                            });
+
+                            const ctx = canvas.getContext('2d');
+                            ctx.imageSmoothingEnabled = true;
+                            ctx.imageSmoothingQuality = 'high';
+
+                            // Convert to JPEG with quality control
+                            canvas.toBlob(blob => {
+                                if (blob) {
+                                    const rotatedImageUrl = URL.createObjectURL(blob);
+
+                                    const a = document.createElement('a');
+                                    a.href = rotatedImageUrl;
+                                    a.download = `rotated-image-${index}.jpg`;  // Save as JPEG
+                                    a.click();
+
+                                    URL.revokeObjectURL(rotatedImageUrl);
+                                } else {
+                                    console.error('Error creating blob from canvas');
+                                }
+                            }, 'image/jpeg', compressionLevelDownload);  // Slightly higher quality to reduce blurriness
+                        }
+                    });
+                    wrapper.appendChild(downloadButton);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            setTimeout(() => {
+                uploadButton.disabled = false;
+            }, 3000);
+        });
+
+        document.getElementById('uploadAllButton').addEventListener('click', function () {
+            const uploadAllButton = this;
+            uploadAllButton.disabled = true;
+
+            const compressionLevelUpload = 0.8;
+
+            const formData = new FormData();
+            const maxWidthHeight = 1000;  // Maximum width or height
+
+            cropperInstances.forEach((cropper, id) => {
+                const canvas = cropper.getCroppedCanvas({
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high'
+                });
+
+                let newWidth = canvas.width;
+                let newHeight = canvas.height;
+
+                if (newWidth > maxWidthHeight || newHeight > maxWidthHeight) {
+                    const aspectRatio = newWidth / newHeight;
+
+                    if (aspectRatio > 1) {
+                        newWidth = maxWidthHeight;
+                        newHeight = Math.floor(maxWidthHeight / aspectRatio);
+                    } else {
+                        newHeight = maxWidthHeight;
+                        newWidth = Math.floor(maxWidthHeight * aspectRatio);
+                    }
+                }
+
+                const resizedCanvas = document.createElement('canvas');
+                resizedCanvas.width = newWidth;
+                resizedCanvas.height = newHeight;
+                const ctx = resizedCanvas.getContext('2d');
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                ctx.drawImage(canvas, 0, 0, newWidth, newHeight);
+
+                resizedCanvas.toBlob(blob => {
+                    if (blob) {
+                        formData.append('images[]', blob, `${id}.jpg`);
+                    } else {
+                        console.error('Error creating blob for upload');
+                    }
+                }, 'image/jpeg', compressionLevelUpload);  // Higher quality to reduce blurriness
+            });
+
+            fetch('https://httpbin.org/post', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Upload success:', data);
+                    console.log('Files:', data.files);
+
+                    uploadAllButton.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error during upload:', error);
+                    uploadAllButton.disabled = false;
+                });
+        });
+
+</script>
+    
+
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

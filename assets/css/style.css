@@ -5,7 +5,8 @@
     --amg-danger: #882121;
     --bs-tertiary-bg: rgba(219, 219, 219, 0.54);
     --bs-body-font-size: 11pt;
-    --input-font-size: 8pt;
+    /* --input-font-size: 8pt; */
+    
 }
 
 body {
@@ -45,7 +46,7 @@ a:hover {
 }
 
 .input-group-text {
-    font-size: var(--input-font-size);
+    font-size: 9pt;
 }
 
 .form-control {
@@ -60,6 +61,10 @@ a:hover {
     --bs-btn-font-size: 10pt;
 }
 
+.btn-lg {
+    --bs-btn-font-size: 14pt;
+}
+
 .btn-primary {
     background-color: var(--amg-primary);
     border: var(--amg-primary);
@@ -70,6 +75,10 @@ a:hover {
     background-color: var(--amg-secondary);
     border: var(--amg-primary);
     color: white;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    background-color: var(--amg-primary-lighter);
 }
 
 .btn-secondary {
@@ -115,6 +124,10 @@ a:hover {
 
 .form-select-sm {
     font-size: 8pt;
+}
+
+.input-group-sm>.btn, .input-group-sm>.form-control, .input-group-sm>.form-select, .input-group-sm>.input-group-text {
+    font-size: 9pt;
 }
 
 

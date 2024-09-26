@@ -98,89 +98,135 @@
     <!-- Bootstrap JS bundle -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/chart.umd.min.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            
+            function isValidData(data) {
+                if (!data || !Array.isArray(data) || data.length === 0) {
+                    console.error('Invalid data:', data);
+                    return false;
+                }
+                return true;
+            }
+
+            function createChart(ctx, type, data, options) {
+                if (isValidData(data.datasets[0].data)) {
+                    new Chart(ctx, {
+                        type: type,
+                        data: data,
+                        options: options
+                    });
+                } else {
+                    ctx.canvas.parentNode.innerHTML = '<p>Data error: Unable to load chart.</p>';
+                }
+            }
+
             // Chart 1: Line Chart
             var ctx1 = document.getElementById('chart1').getContext('2d');
-            var chart1 = new Chart(ctx1, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Sales',
-                        data: [10, 20, 15, 30, 25, 40, 35, 40],
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
+            var data1 = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [10, 20, 15, 30, 25, 40, 35, 40, 45, 50, 55, 60],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true
+                }]
+            };
+            createChart(ctx1, 'line', data1, { responsive: true, maintainAspectRatio: false });
 
             // Chart 2: Bar Chart
             var ctx2 = document.getElementById('chart2').getContext('2d');
-            var chart2 = new Chart(ctx2, {  
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Votes',
-                        data: [12, 19, 10, 13, 9, 20, 25, 20],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
+            var data2 = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Votes',
+                    data: [12, 19, 3, 5, 2, 3, 15, 20, 25, 30, 35, 40],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            createChart(ctx2, 'bar', data2, { responsive: true, maintainAspectRatio: false });
 
-            // Chart 3: Pie Chart
+            // Chart 3: Line Chart with Multiple Datasets
             var ctx3 = document.getElementById('chart3').getContext('2d');
-            var chart3 = new Chart(ctx3, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-                    datasets: [
-                        {
-                            label: '2023',
-                            data: [12, 19, 3, 5, 2, 3],
-                            borderWidth: 1
-                        },
-                        {
-                            label: '2024',
-                            data: [15,20,5,10,20],
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
+            var data3 = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: '2023',
+                        data: [12, 19, 3, 5, 2, 3, 10, 15, 20, 25, 30, 35],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        fill: true
+                    },
+                    {
+                        label: '2024',
+                        data: [15, 25, 5, 10, 20, 30, 35, 40, 45, 50, 55, 60],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        fill: true
+                    }
+                ]
+            };
+            createChart(ctx3, 'line', data3, { responsive: true, maintainAspectRatio: false });
 
             // Chart 4: Doughnut Chart
             var ctx4 = document.getElementById('chart4').getContext('2d');
-            var chart4 = new Chart(ctx4, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Votes',
-                        data: [12, 19, 10, 13, 9, 10],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
+            var data4 = {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            createChart(ctx4, 'doughnut', data4, { responsive: true, maintainAspectRatio: false });
         });
     </script>
 </body>
